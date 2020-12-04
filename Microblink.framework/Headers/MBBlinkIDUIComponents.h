@@ -6,14 +6,10 @@
 //  Copyright (c) 2012 Microblink Ltd. All rights reserved.
 //
 
-#import "MBBlinkInputUIComponents.h"
-#import "MBBlinkCardUIComponents.h"
-
 // Overlay delegates
 #import "MBDocumentOverlayViewControllerDelegate.h"
 #import "MBDocumentVerificationOverlayViewControllerDelegate.h"
 #import "MBBlinkIdOverlayViewControllerDelegate.h"
-//#import "MBLivenessOverlayViewControllerDelegate.h"
 
 // Overlays
 #import "MBDocumentOverlayViewController.h"
@@ -22,8 +18,7 @@
 #import "MBDocumentVerificationOverlaySettings.h"
 #import "MBBlinkIdOverlayViewController.h"
 #import "MBBlinkIdOverlaySettings.h"
-//#import "MBLivenessOverlayViewController.h"
-//#import "MBLivenessOverlaySettings.h"
+#import "MBCustomOverlayViewController.h"
 
 // Overlay subviews
 #import "MBDocumentSubview.h"
@@ -31,3 +26,11 @@
 #import "MBDocumentVerificationInstructionsSubview.h"
 #import "MBCameraReticle.h"
 #import "MBErrorReticle.h"
+#import "MBDotsSubview.h"
+#import "MBDotsResultSubview.h"
+#import "MBTapToFocusSubview.h"
+#import "MBResultSubview.h"
+#import "MBGlareStatusSubview.h"
+
+// Logger
+#import "MBLogger.h"
