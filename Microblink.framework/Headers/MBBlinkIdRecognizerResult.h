@@ -9,17 +9,23 @@
 #import "MBDateResult.h"
 #import "MBMrzResult.h"
 #import "MBClassInfo.h"
+#import "MBBarcodeResult.h"
+#import "MBVizResult.h"
+#import "MBProcessingStatus.h"
+#import "MBRecognitionMode.h"
 
 #import "MBFullDocumentImageResult.h"
 #import "MBEncodedFullDocumentImageResult.h"
 #import "MBFaceImageResult.h"
 #import "MBEncodedFaceImageResult.h"
+#import "MBSignatureImageResult.h"
+#import "MBEncodedSignatureImageResult.h"
 
 #import "MBDriverLicenseDetailedInfo.h"
-#import "MBDocumentImageColorStatus.h"
-#import "MBDocumentImageMoireStatus.h"
+#import "MBImageAnalysisResult.h"
 
 #import "MBAgeResult.h"
+#import "MBDocumentExpirationCheckResult.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -27,7 +33,7 @@ NS_ASSUME_NONNULL_BEGIN
 * The Blink ID Recognizer is used for scanning Blink ID.
 */
 MB_CLASS_AVAILABLE_IOS(8.0)
-@interface MBBlinkIdRecognizerResult : MBRecognizerResult<NSCopying, MBFullDocumentImageResult, MBEncodedFullDocumentImageResult, MBFaceImageResult, MBEncodedFaceImageResult, MBAgeResult>
+@interface MBBlinkIdRecognizerResult : MBRecognizerResult<NSCopying, MBFullDocumentImageResult, MBEncodedFullDocumentImageResult, MBFaceImageResult, MBEncodedFaceImageResult, MBAgeResult, MBDocumentExpirationCheckResult, MBSignatureImageResult, MBEncodedSignatureImageResult>
 
 MB_INIT_UNAVAILABLE
 
@@ -162,24 +168,35 @@ MB_INIT_UNAVAILABLE
 @property (nonatomic, readonly, nullable) MBDriverLicenseDetailedInfo *driverLicenseDetailedInfo;
 
 /**
- * The driver license conditions.
- */
-@property (nonatomic, readonly, nullable) NSString *conditions;
-
-/**
  * The classification information.
  */
 @property (nonatomic, readonly, nullable) MBClassInfo *classInfo;
 
 /**
- * Defines possible color statuses determined from scanned image.
+ * Defines possible color and moire statuses determined from scanned image.
  */
-@property (nonatomic, readonly) MBDocumentImageColorStatus documentImageColorStatus;
+@property (nonatomic, readonly, nullable) MBImageAnalysisResult *imageAnalysisResult;
 
 /**
- * Defines possible moire statuses determined from scanned image.
+ * Defines the data extracted from the barcode.
  */
-@property (nonatomic, readonly) MBDocumentImageMoireStatus documentImageMoireStatus;
+@property (nonatomic, readonly, nullable) MBBarcodeResult *barcodeResult;
+
+/**
+ * Defines the data extracted from the visual inspection zone
+ */
+@property (nonatomic, readonly, nullable) MBVizResult *vizResult;
+
+/**
+ * Defines status of the last recognition process.
+ */
+@property (nonatomic, readonly, assign) MBProcessingStatus processingStatus;
+
+/**
+ * Recognition mode used to scan current document.
+ */
+@property (nonatomic, readonly, assign) MBRecognitionMode recognitionMode;
+
 
 @end
 

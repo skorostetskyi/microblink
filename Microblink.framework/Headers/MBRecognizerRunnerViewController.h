@@ -45,12 +45,14 @@ NS_ASSUME_NONNULL_BEGIN
  * If there is camera frame being processed at a time, the processing will finish, but the results of processing
  * will not be returned.
  *
- * Ideally, this method should be called from the background thread that returns the scan result.
+ * NOTE: This method must be called from the background thread
  */
 - (void)pauseScanning;
 
 /**
  * Retrieve the current state of scanning.
+ *
+ * NOTE: This method is always returned on the background thread.
  *
  *  @return YES if scanning is paused. NO if it's in progress
  */
@@ -67,14 +69,17 @@ NS_ASSUME_NONNULL_BEGIN
  * Internal state is used to use the fact that the same object exists on multiple consecutive frames, and using internal
  * state provides better scanning results.
  *
+ * NOTE: This method must be called on the background thread.
+ *
  *  @param resetState YES if state should be reset.
  */
 - (void)resumeScanningAndResetState:(BOOL)resetState;
 
 /**
- * Resumes camera session. This method is automatically called in viewWillAppear when ScanningViewController enters screen.
+ * Resumes camera session asynchronously on camera queue. This method is automatically called in viewWillAppear when ScanningViewController enters screen.
+ * @param completion block is executed on main queue after camera is resummed
  */
-- (BOOL)resumeCamera;
+- (void)resumeCamera:(void(^_Nullable)(void))completion;
 
 /**
  * Pauses camera session. This method is automatically called in viewDidDissapear when ScanningViewController exits screen.
@@ -100,9 +105,11 @@ NS_ASSUME_NONNULL_BEGIN
  */
 - (void)willSetTorchOn:(BOOL)torchOn;
 
-/**-------------------------------*/
-/** @name Settings recofiguration */
-/**-------------------------------*/
+/**
+ * Settings recofiguration
+ *
+ * NOTE: This method must be called on the background thread.
+ */
 - (void)resetState;
 
 /**

@@ -30,6 +30,11 @@ MB_INIT_UNAVAILABLE
 @property (nonatomic, readonly, nullable) NSString *firstName;
 
 /**
+ * The middle name of the United States driver license owner.
+ */
+@property (nonatomic, readonly, nullable) NSString *middleName;
+
+/**
  * The last name of the United States driver license owner.
  */
 @property (nonatomic, readonly, nullable) NSString *lastName;
@@ -38,6 +43,11 @@ MB_INIT_UNAVAILABLE
  * The full name of the United States driver license owner.
  */
 @property (nonatomic, readonly, nullable) NSString *fullName;
+
+/**
+ * The name suffix of the United States driver license owner.
+ */
+@property (nonatomic, readonly, nullable) NSString *nameSuffix;
 
 /**
  * The full address of the United States driver license owner.
@@ -83,6 +93,26 @@ MB_INIT_UNAVAILABLE
  * The type of vehicle the driver license owner has privilege to drive.
  */
 @property (nonatomic, readonly, nullable) NSString *vehicleClass;
+
+/**
+ * The street address portion of the United States driver license owner.
+ */
+@property (nonatomic, readonly, nullable) NSString *street;
+
+/**
+ * The postal code address portion of the United States driver license owner.
+ */
+@property (nonatomic, readonly, nullable) NSString *postalCode;
+
+/**
+ * The city address portion of the United States driver license owner.
+ */
+@property (nonatomic, readonly, nullable) NSString *city;
+
+/**
+ * The jurisdiction code address portion of the United States driver license owner.
+ */
+@property (nonatomic, readonly, nullable) NSString *jurisdiction;
 
 /**
  * Byte array with result of the scan

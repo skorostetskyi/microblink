@@ -16,6 +16,11 @@
 #import "MBEncodeFullDocumentImage.h"
 #import "MBFullDocumentImageDpi.h"
 #import "MBFullDocumentImageExtensionFactors.h"
+#import "MBAnonymizationMode.h"
+#import "MBRecognitionModeFilter.h"
+#import "MBSignatureImage.h"
+#import "MBSignatureImageDpi.h"
+#import "MBEncodeSignatureImage.h"
 
 @protocol MBBlinkIdRecognizerDelegate;
 
@@ -25,7 +30,7 @@ NS_ASSUME_NONNULL_BEGIN
 * The Blink ID Recognizer is used for scanning Blink ID.
 */
 MB_CLASS_AVAILABLE_IOS(8.0) MB_FINAL
-@interface MBBlinkIdRecognizer : MBRecognizer <NSCopying, MBFaceImage, MBEncodeFaceImage, MBFaceImageDpi, MBFullDocumentImage, MBEncodeFullDocumentImage, MBFullDocumentImageDpi, MBFullDocumentImageExtensionFactors>
+@interface MBBlinkIdRecognizer : MBRecognizer <NSCopying, MBFaceImage, MBEncodeFaceImage, MBFaceImageDpi, MBFullDocumentImage, MBEncodeFullDocumentImage, MBFullDocumentImageDpi, MBFullDocumentImageExtensionFactors,  MBSignatureImage, MBSignatureImageDpi, MBEncodeSignatureImage>
 
 MB_INIT
 
@@ -94,12 +99,19 @@ MB_INIT
 @property (nonatomic, assign) BOOL validateResultCharacters;
 
 /**
- * Defines whether sensitive data should be anonymized in full document image result.
+ * Defines whether sensitive data should be removed from images, result fields or both.
  * The setting only applies to certain documents
  *
- * Default: YES
+ * Default: MBAnonymizationModeFullResult
  */
-@property (nonatomic, assign) BOOL anonymizeImage;
+@property (nonatomic, assign) MBAnonymizationMode anonymizationMode;
+
+/**
+ * Enable or disable recognition of specific document groups supported by the current license.
+ *
+ * Default: all modes are enabled
+ */
+@property (nonatomic, strong) MBRecognitionModeFilter *recognitionModeFilter;
 
 @end
 
